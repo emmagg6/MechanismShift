@@ -12,8 +12,10 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import pandas as pd
 
-device = 'cuda:0'
+# device = 'cuda:0'
 
+# chelsea mac
+device = torch.device("cpu")
 
 def hist(s):
   c = Counter(s)

@@ -24,7 +24,11 @@ from src.transformer import *
 
 save_dir = Path('empirics/histogram')
 save_dir.mkdir(exist_ok=True, parents=True)
-device = 'cuda:0'
+# device = 'cuda:0'
+
+# chelsea mac
+device = torch.device("cpu")
+
 
 # Define the length, maximum value, and number of samples
 seq_len = 10
@@ -48,9 +52,13 @@ p = 128
 model_dim = 64
 n_classes = seq_len+1
 L = seq_len
-n_runs = 10
+# n_runs = 10
+n_runs = 2
 model_types = ['only_sem','only_pos']
-n_epochs = 200
+# n_epochs = 200
+
+# chelsea mac
+n_epochs = 2
 
 
 results = []
@@ -70,11 +78,13 @@ for model_type in model_types:
             'run':i,
         })
     print(f'Done.')
-    
+  
+print("saving to frozen_transformer_result.csv")
 pd.DataFrame(results).to_csv(save_dir / 'frozen_transformer_result.csv',index=False)
 
 
-n_epochs = 100
+# n_epochs = 100
+n_epochs = 2
 reparameterized_transformers = []
 
 for r in range(n_runs):
